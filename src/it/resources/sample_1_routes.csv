@@ -1,0 +1,8 @@
+airline,airlineId,sourceAirport,sourceAirportId,destinationAirport,destinationAirportId,codeShare,stops,equipment
+MI,4750,SIN,3316,CCU,3043,,0,320
+MI,4750,SIN,3316,CEB,4206,,0,320 738
+MI,4750,SIN,3316,CJB,3135,,0,320
+MI,4750,SIN,3316,CKG,3393,,0,320 319
+MI,4750,SIN,3316,CNX,3931,,0,320
+MI,4750,SIN,3316,COK,3136,,0,320 738 319
+MI,4750,SIN,3316,CSX,3371,,0,320
