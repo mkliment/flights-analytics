@@ -1,24 +1,22 @@
 # Flights Analytics
 
-Note: Structure of the Spark Scala applications is taken from following repository: https://github.
-com/godatadriven/scala-spark-application (thanks to author: Tim van Cann from GDD)
+Note: Structure of the Spark Scala applications is taken from [following repository](https://github.com/godatadriven/scala-spark-application) (thanks to author: Tim van Cann from GDD)
 
-This repository contains simple "real-time" Spark streaming processing pipeline which produce most popular source airports per time
-windows.
+This repository contains simple "real-time" Spark streaming processing pipeline which produce most popular source airports per time windows.
 
 ## Definition of processing pipeline
 
 Processing pipeline has 2 main steps:
-1. __download__: we use `com/schiphol/PopularAirportsDownloader.scala` which downloads on a local filesystem (TODO: fixme to Minio)
+1. __download__: we use `PopularAirportsDownloader.scala` which downloads on a local filesystem (TODO: fixme to Minio)
   `routes` dataset. (submit command with: ```./submitTask0.sh```, check steps bellow).
   from http URL. This is input dataset for the Spark jobs which are part of next step of the pipeline;
 2. __process and store results__: at this step we have Spark jobs which aggregates data and provide as output top N airports
   which have the most destinations (routes) which can be reached by those source airports. For this step we have 3 different spark jobs:
-* `com/schiphol/PopularAirports.scala`: a batch Spark job that read in the routes dataset. Create an overview of the top N
+* `PopularAirports.scala`: a batch Spark job that read in the routes dataset. Create an overview of the top N
     airports used as source airport. Write the output to a filesystem (submit command with: ```./submitTask1.sh```).
-* `com/schiphol/PopularAirportsStream.scala`: Spark streaming application same as previous Spark job using Spark Structured Streaming
+* `PopularAirportsStream.scala`: Spark streaming application same as previous Spark job using Spark Structured Streaming
    API of Spark and use the dataset file as a source (submit command with: ```./submitTask2.sh```).
-* `com/schiphol/PopularAirportsWindowAgg.scala`: Spark Streaming job where aggregations are done using sliding windows. We can pick any
+* `PopularAirportsWindowAgg.scala`: Spark Streaming job where aggregations are done using sliding windows. We can pick any
   window and sliding interval. The end result is the top N airports used as source airport within each window stored on filesystem
   (submit command with: ```./submitTask3.sh```).
 
